@@ -86,6 +86,10 @@ public class App implements CommandLineRunner
 //        userService.addRoleToUser(user3, "USER_R");
 //        List<User> users = userService.findAllWithRolesAndMessages();
 
+        /**
+         * Находим ID пользователя по его логину
+         * Удаляем пользователя по ID
+         */
 //        Long id = userService.findByLogin("user").getId();
 //        userService.deleteById(id);
 

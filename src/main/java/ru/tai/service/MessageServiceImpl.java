@@ -7,6 +7,7 @@ import ru.tai.model.Message;
 import ru.tai.model.User;
 import ru.tai.repository.MessageRepository;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,6 +23,13 @@ public class MessageServiceImpl implements MessageService {
         List<Message> messages = messageRepository.findByUser(user);
         return messages;
     }
+
+    @Override
+    @Transactional
+    public List<Message> findAllByDatetimeBetween(Date start, Date stop) {
+        return messageRepository.findAllByDatetimeBetween(start, stop);
+    }
+
 
     @Override
     @Transactional

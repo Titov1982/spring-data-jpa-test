@@ -16,7 +16,8 @@ public class Message {
 
     private Date datetime;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    // Принят жадный(EAGER) способ выборки сущностей User
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user = new User();
 

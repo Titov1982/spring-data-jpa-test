@@ -99,6 +99,7 @@ public class UserServiceImpl implements UserService {
         if (userFromDb != null){
             Message newMessage = new Message(message, userFromDb);
             userFromDb.addMessage(newMessage);
+            userRepository.save(userFromDb);
         }
     }
 

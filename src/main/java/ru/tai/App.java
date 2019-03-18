@@ -93,7 +93,7 @@ public class App implements CommandLineRunner
          * Проверка добавления сообщений пользователю
          */
         User user4 = userService.findByLogin("admin");
-//        userService.addMessageToUser(user4, "Привет от админа!");
+        userService.addMessageToUser(user4, "Привет от админа!!!!!!");
 //        userService.addMessageToUser(user4, "ку ку");
 //        userService.addMessageToUser(user4, "Урааа!");
         List<User> users2 = userService.findAllWithRolesAndMessages();
@@ -107,7 +107,7 @@ public class App implements CommandLineRunner
          * После получения всех сообщений выбранного пользователя
          * можно удалить выбранное сообщения по его Id
          */
-        messageService.deleteById(messages.get(0).getId());
+//        messageService.deleteById(messages.get(0).getId());
 
         System.out.println("#------------- Finish -------------#");
     }

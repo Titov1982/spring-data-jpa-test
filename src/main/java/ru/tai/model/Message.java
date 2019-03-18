@@ -2,7 +2,6 @@ package ru.tai.model;
 
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 @Entity
@@ -22,11 +21,12 @@ public class Message {
     private User user = new User();
 
     public Message() {
+        this.datetime = new Date();
     }
 
-    public Message(String message, Date datetime, User user) {
+    public Message(String message, User user) {
         this.message = message;
-        this.datetime = datetime;
+        this.datetime = new Date();
         this.user = user;
     }
 

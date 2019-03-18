@@ -23,6 +23,8 @@ public interface UserService {
     void add(User user);
     void addRoleToUser(User user, String roleName);
 
+    void addMessageToUser(User user, String message);
+
     void update(Long oldUserId, User newUser);
 
     void deleteById(Long id);

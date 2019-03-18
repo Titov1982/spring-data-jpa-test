@@ -3,6 +3,7 @@ package ru.tai.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.tai.model.Message;
 import ru.tai.model.Role;
 import ru.tai.model.User;
 import ru.tai.repository.UserRepository;
@@ -89,6 +90,16 @@ public class UserServiceImpl implements UserService {
         Role role = roleService.findByRole(roleName);
         user.addRole(role);
         userRepository.save(user);
+    }
+
+    @Override
+    @Transactional
+    public void addMessageToUser(User user, String message) {
+        User userFromDb = userRepository.findByLogin(user.getLogin());
+        if (userFromDb != null){
+            Message newMessage = new Message(message, userFromDb);
+            userFromDb.addMessage(newMessage);
+        }
     }
 
     @Override

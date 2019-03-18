@@ -57,7 +57,7 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findByLogin(login);
         if (user != null){
             user.getRoles().iterator(); // Заставляем загрузить данные из сущности ROLE в единой транзакции
-                    user.setMessages(null);
+            user.setMessages(null);
         }
         return user;
     }
@@ -68,7 +68,7 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findByLogin(login);
         if (user != null){
             user.getRoles().iterator(); // Заставляем загрузить данные из сущности ROLE в единой транзакции
-        user.getMessages().iterator();                  // Заставляем загрузить данные из сущности MESSAGE в единой транзакции
+        user.getMessages().iterator();  // Заставляем загрузить данные из сущности MESSAGE в единой транзакции
         }
         return user;
     }

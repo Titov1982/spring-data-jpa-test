@@ -7,8 +7,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
+import ru.tai.model.Message;
 import ru.tai.model.Role;
 import ru.tai.model.User;
+import ru.tai.service.MessageService;
 import ru.tai.service.RoleService;
 import ru.tai.service.UserService;
 
@@ -28,6 +30,10 @@ public class App implements CommandLineRunner
     @Autowired
     @Qualifier("roleService")
     private RoleService roleService;
+
+    @Autowired
+    @Qualifier("messageService")
+    private MessageService messageService;
 
     public static void main( String[] args )
     {
@@ -83,12 +89,25 @@ public class App implements CommandLineRunner
 //        Long id = userService.findByLogin("user").getId();
 //        userService.deleteById(id);
 
+        /**
+         * Проверка добавления сообщений пользователю
+         */
         User user4 = userService.findByLogin("admin");
-        userService.addMessageToUser(user4, "Привет от админа!");
-        userService.addMessageToUser(user4, "ку ку");
-        userService.addMessageToUser(user4, "Урааа!");
-
+//        userService.addMessageToUser(user4, "Привет от админа!");
+//        userService.addMessageToUser(user4, "ку ку");
+//        userService.addMessageToUser(user4, "Урааа!");
         List<User> users2 = userService.findAllWithRolesAndMessages();
+
+        /**
+         * Поиск всех сообщений указанного пользователя
+         */
+        List<Message> messages = messageService.findByUser(user4);
+
+        /**
+         * После получения всех сообщений выбранного пользователя
+         * можно удалить выбранное сообщения по его Id
+         */
+        messageService.deleteById(messages.get(0).getId());
 
         System.out.println("#------------- Finish -------------#");
     }

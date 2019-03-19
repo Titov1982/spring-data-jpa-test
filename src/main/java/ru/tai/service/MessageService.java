@@ -6,9 +6,12 @@ import ru.tai.model.User;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service("messageService")
 public interface MessageService {
+
+    Message findById(Long id);
 
     List<Message> findByUser(User user);
 

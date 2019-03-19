@@ -18,6 +18,12 @@ public class MessageServiceImpl implements MessageService {
     private MessageRepository messageRepository;
 
     @Override
+    public Message findById(Long id) {
+        Optional<Message> message = messageRepository.findById(id);
+        return message.get();
+    }
+
+    @Override
     @Transactional(readOnly = true)
     public List<Message> findByUser(User user) {
         List<Message> messages = messageRepository.findByUser(user);

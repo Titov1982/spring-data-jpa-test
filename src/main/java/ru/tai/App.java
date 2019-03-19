@@ -85,9 +85,10 @@ public class App implements CommandLineRunner
          * Находим в базе необходимую ему роль и используя специальный сервисный метод назначаем ее пользователю
          * Далее производим выборку всех пользователей с ролями и сообщениями
          */
-//        User user3 = new User("user", "user", "User", "User", "user@user.net", null);
-//        userService.addRoleToUser(user3, "USER_R");
-//        List<User> users = userService.findAllWithRolesAndMessages();
+        User user3 = new User("user", "user", "User", "User", "user@user.net", null);
+        userService.addRoleToUser(user3, "USER_R");
+        List<User> users = userService.findAllWithRolesAndMessages();
+        List<Message> allMessagesFromUser = users.get(0).getMessages();
 
         /**
          * Находим ID пользователя по его логину

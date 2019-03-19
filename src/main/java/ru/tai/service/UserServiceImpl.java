@@ -88,8 +88,10 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public void addRoleToUser(User user, String roleName) {
         Role role = roleService.findByRole(roleName);
-        user.addRole(role);
-        userRepository.save(user);
+        if (role == null) {
+            user.addRole(role);
+            userRepository.save(user);
+        }
     }
 
     @Override

@@ -14,7 +14,10 @@ import ru.tai.service.MessageService;
 import ru.tai.service.RoleService;
 import ru.tai.service.UserService;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Start application
@@ -112,6 +115,19 @@ public class App implements CommandLineRunner
          * можно удалить выбранное сообщения по его Id
          */
 //        messageService.deleteById(messages.get(0).getId());
+
+        /**
+         * Проверка метода получения всех сообщений за указанный период.
+         * Формируем значения начальной и конечной дат и времени из строковых значений.
+         * Сформированные дачы (Date) передаем в метод сервиса выборки из базы.
+         */
+        String startDataStr = "2019-03-18 17:00:00.000000";
+        String stopDataStr = "2019-03-18 17:36:00.000000";
+        SimpleDateFormat simpleDateFormatStartDataStr = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
+        SimpleDateFormat simpleDateFormatStopDataStr = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.ENGLISH);
+        Date startData = simpleDateFormatStartDataStr.parse(startDataStr);
+        Date stopData = simpleDateFormatStopDataStr.parse(stopDataStr);
+        List<Message> mes = messageService.findAllByDatetimeBetween(startData, stopData);
 
         System.out.println("#------------- Finish -------------#");
     }
